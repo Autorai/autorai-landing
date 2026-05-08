@@ -642,7 +642,7 @@ footer a:hover{color:var(--text)}
   <p style="font-size:0.75rem">Resultados podem variar. Depoimentos são de usuários reais e não garantem resultados idênticos.</p>
 </footer>
 <script>
-const API = 'http://localhost:3001';
+const API = 'https://autorai-production.up.railway.app';
 async function checkout(title, price) {
   const btns = document.querySelectorAll('.plan-cta');
   btns.forEach(b => { b.disabled = true; b.textContent = 'Aguarde...'; });
