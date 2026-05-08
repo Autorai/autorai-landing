@@ -75,27 +75,54 @@ p{color:rgba(255,255,255,0.55);font-size:15px;line-height:1.7;margin-bottom:40px
 </div>
 <script>
 const params = new URLSearchParams(window.location.search);
-const status = params.get('status');
-const collectionStatus = params.get('collection_status');
-const realStatus = status || collectionStatus;
+const email = params.get('external_reference') || '';
 
-document.getElementById('checking').style.display = 'none';
-
-if (realStatus === 'approved') {
+function showReady() {
+  document.getElementById('checking').style.display = 'none';
+  document.getElementById('pending').style.display = 'none';
   document.getElementById('confirmed').style.display = 'block';
-  document.getElementById('main-title').textContent = 'Bem-vindo ao Autor.ai!';
-  document.getElementById('main-desc').textContent = 'Seu acesso está liberado. Siga os passos abaixo para começar a criar roteiros virais agora mesmo.';
+  document.getElementById('main-title').textContent = 'Acesso liberado!';
+  document.getElementById('main-desc').textContent = 'Seu pagamento foi confirmado. Clique abaixo para entrar na plataforma.';
   document.getElementById('steps-section').style.display = 'block';
   document.getElementById('btn-section').style.display = 'block';
-} else if (realStatus === 'pending' || realStatus === 'in_process') {
+}
+
+function showPending() {
+  document.getElementById('checking').style.display = 'none';
   document.getElementById('pending').style.display = 'block';
-  document.getElementById('main-title').textContent = 'Pagamento em análise';
-  document.getElementById('main-desc').textContent = 'Seu pagamento está sendo processado. Assim que confirmado, você receberá acesso por email.';
-} else {
+  document.getElementById('main-title').textContent = 'Confirmando pagamento...';
+  document.getElementById('main-desc').textContent = 'Estamos verificando seu Pix. Aguarde alguns segundos.';
+}
+
+function showFailed() {
+  document.getElementById('checking').style.display = 'none';
   document.getElementById('failed').style.display = 'block';
   document.getElementById('main-title').textContent = 'Pagamento não concluído';
   document.getElementById('main-desc').textContent = 'Parece que o pagamento não foi finalizado. Tente novamente.';
   document.getElementById('failed-section').style.display = 'block';
+}
+
+let attempts = 0;
+async function checkPlan() {
+  attempts++;
+  try {
+    const r = await fetch('https://autorai-production.up.railway.app/api/payment/check-plan?email=' + encodeURIComponent(email));
+    const data = await r.json();
+    if (data.ready) { showReady(); return; }
+  } catch(e) {}
+  if (attempts >= 10) { showReady(); return; }
+  showPending();
+  setTimeout(checkPlan, 2000);
+}
+
+const status = params.get('status') || params.get('collection_status');
+if (status === 'approved') {
+  showReady();
+} else if (status === 'pending' || status === 'in_process') {
+  showPending();
+  if (email) setTimeout(checkPlan, 2000);
+} else {
+  showFailed();
 }
 </script>
 </body>
