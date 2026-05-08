@@ -643,14 +643,42 @@ footer a:hover{color:var(--text)}
 </footer>
 <script>
 const API = 'https://autorai-production.up.railway.app';
-async function checkout(title, price) {
+let _checkoutTitle = '';
+let _checkoutPrice = 0;
+
+function checkout(title, price) {
+  _checkoutTitle = title;
+  _checkoutPrice = price;
+  document.getElementById('email-modal').style.display = 'flex';
+  document.getElementById('email-input').value = '';
+  document.getElementById('email-error').style.display = 'none';
+  setTimeout(() => document.getElementById('email-input').focus(), 100);
+}
+
+function closeModal() {
+  document.getElementById('email-modal').style.display = 'none';
+}
+
+async function confirmEmail() {
+  const email = document.getElementById('email-input').value.trim().toLowerCase();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!valid) {
+    document.getElementById('email-error').style.display = 'block';
+    return;
+  }
+  document.getElementById('email-error').style.display = 'none';
+  closeModal();
+  await doCheckout(_checkoutTitle, _checkoutPrice, email);
+}
+
+async function doCheckout(title, price, email) {
   const btns = document.querySelectorAll('.plan-cta');
   btns.forEach(b => { b.disabled = true; b.textContent = 'Aguarde...'; });
   try {
     const res = await fetch(API + '/api/payment/create-preference', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, price, quantity: 1 }),
+      body: JSON.stringify({ title, price, quantity: 1, email }),
     });
     const data = await res.json();
     if (data.init_point) {
@@ -801,5 +829,16 @@ document.querySelectorAll('.demo-chip').forEach((chip, idx) => {
   });
 });
 </script>
+
+<div id="email-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:#0e111a;border:1px solid rgba(0,229,176,0.2);border-radius:20px;padding:40px;max-width:420px;width:90%;text-align:center;">
+    <div style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;margin-bottom:8px">Quase lá!</div>
+    <p style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:24px;line-height:1.6">Informe o email que você usa no Google para receber o acesso ao Autor.ai assim que o pagamento for confirmado.</p>
+    <input id="email-input" type="email" placeholder="seu@email.com" style="width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;color:#fff;font-size:15px;margin-bottom:8px;box-sizing:border-box;outline:none;" />
+    <p id="email-error" style="color:#f87171;font-size:12px;margin-bottom:16px;display:none">Por favor insira um email válido.</p>
+    <button onclick="confirmEmail()" style="width:100%;padding:14px;background:linear-gradient(135deg,#00e5b0,#00b8ff);color:#07080d;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;border:none;border-radius:12px;cursor:pointer;margin-bottom:12px">Continuar para pagamento →</button>
+    <button onclick="closeModal()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:13px;cursor:pointer">Cancelar</button>
+  </div>
+</div>
 </body>
 </html>
