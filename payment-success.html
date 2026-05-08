@@ -30,6 +30,9 @@ p{color:rgba(255,255,255,0.55);font-size:15px;line-height:1.7;margin-bottom:40px
 .email-note{font-size:12px;color:rgba(255,255,255,0.3);}
 .logo{font-family:"Syne",sans-serif;font-size:16px;font-weight:800;margin-bottom:48px;}
 .logo span{color:#00e5b0;}
+#steps-section{display:none;}
+#btn-section{display:none;}
+#failed-section{display:none;}
 </style>
 </head>
 <body>
@@ -38,10 +41,13 @@ p{color:rgba(255,255,255,0.55);font-size:15px;line-height:1.7;margin-bottom:40px
   <div class="check">
     <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
-  <div class="tag"><div class="dot"></div>PAGAMENTO CONFIRMADO</div>
-  <h1>Bem-vindo ao Autor.ai!</h1>
-  <p>Seu acesso está liberado. Siga os passos abaixo para começar a criar roteiros virais agora mesmo.</p>
-  <div class="steps">
+  <div id="checking" style="color:rgba(255,255,255,0.5);font-size:14px;margin-bottom:20px">Verificando pagamento...</div>
+  <div id="confirmed" style="display:none"><div class="tag"><div class="dot"></div>PAGAMENTO CONFIRMADO</div></div>
+  <div id="pending" style="display:none"><div class="tag" style="background:rgba(255,190,77,0.08);border-color:rgba(255,190,77,0.2);color:rgba(255,190,77,0.8)"><div class="dot" style="background:#fbbf24;box-shadow:0 0 8px #fbbf24"></div>PAGAMENTO PENDENTE</div></div>
+  <div id="failed" style="display:none"><div class="tag" style="background:rgba(255,80,80,0.08);border-color:rgba(255,80,80,0.2);color:rgba(255,80,80,0.8)"><div class="dot" style="background:#f87171;box-shadow:0 0 8px #f87171"></div>PAGAMENTO NÃO REALIZADO</div></div>
+  <h1 id="main-title">Verificando...</h1>
+  <p id="main-desc">Aguarde um momento.</p>
+  <div id="steps-section"><div class="steps">
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-text">
@@ -64,8 +70,33 @@ p{color:rgba(255,255,255,0.55);font-size:15px;line-height:1.7;margin-bottom:40px
       </div>
     </div>
   </div>
-  <a href="https://autorai.vercel.app" class="btn">Acessar o Autor.ai agora →</a>
+  </div><div id="btn-section"><a href="https://autorai.vercel.app" class="btn">Acessar o Autor.ai agora →</a></div><div id="failed-section" style="margin-bottom:20px"><a href="https://autorai.com.br" class="btn" style="background:rgba(255,255,255,0.1);color:#fff;box-shadow:none">← Voltar à loja</a></div>
   <p class="email-note">Dúvidas? Fale com a gente: autor.ai.app@gmail.com</p>
 </div>
+<script>
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status');
+const collectionStatus = params.get('collection_status');
+const realStatus = status || collectionStatus;
+
+document.getElementById('checking').style.display = 'none';
+
+if (realStatus === 'approved') {
+  document.getElementById('confirmed').style.display = 'block';
+  document.getElementById('main-title').textContent = 'Bem-vindo ao Autor.ai!';
+  document.getElementById('main-desc').textContent = 'Seu acesso está liberado. Siga os passos abaixo para começar a criar roteiros virais agora mesmo.';
+  document.getElementById('steps-section').style.display = 'block';
+  document.getElementById('btn-section').style.display = 'block';
+} else if (realStatus === 'pending' || realStatus === 'in_process') {
+  document.getElementById('pending').style.display = 'block';
+  document.getElementById('main-title').textContent = 'Pagamento em análise';
+  document.getElementById('main-desc').textContent = 'Seu pagamento está sendo processado. Assim que confirmado, você receberá acesso por email.';
+} else {
+  document.getElementById('failed').style.display = 'block';
+  document.getElementById('main-title').textContent = 'Pagamento não concluído';
+  document.getElementById('main-desc').textContent = 'Parece que o pagamento não foi finalizado. Tente novamente.';
+  document.getElementById('failed-section').style.display = 'block';
+}
+</script>
 </body>
 </html>
