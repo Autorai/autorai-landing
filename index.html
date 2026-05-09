@@ -73,8 +73,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:fl
 .sp-label{font-size:0.8rem;color:var(--muted);margin-top:2px}
 .sp-div{width:1px;height:40px;background:var(--border)}
 .ticker-section{position:relative;z-index:1;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(0,229,176,0.03),rgba(0,184,255,0.03))}
-.ticker-inner{display:flex;align-items:center;height:52px}
-.ticker-label{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#060810;font-weight:800;font-size:0.7rem;padding:0 20px;height:100%;display:flex;align-items:center;white-space:nowrap;letter-spacing:0.08em;flex-shrink:0}
+.ticker-inner{display:flex;align-items:center;height:40px}
+.ticker-label{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#060810;font-weight:800;font-size:0.6rem;padding:0 12px;height:100%;display:flex;align-items:center;white-space:nowrap;letter-spacing:0.06em;flex-shrink:0}
 .ticker-track{overflow:hidden;flex:1}
 .ticker-content{display:flex;animation:ticker 50s linear infinite;white-space:nowrap}
 .ticker-item{display:inline-flex;align-items:center;gap:10px;padding:0 32px;font-size:0.82rem;color:var(--text);font-weight:500}
@@ -97,7 +97,7 @@ section{position:relative;z-index:1}
 .how-step h3{font-weight:700;font-size:1.15rem;margin-bottom:12px}
 .how-step p{color:var(--muted);font-size:0.9rem;line-height:1.7}
 .worlds{padding:120px 0;background:var(--surface)}
-.worlds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:72px}
+.worlds-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:72px}
 .world-card{border:1px solid var(--glass-border);border-radius:24px;padding:36px 28px;background:var(--glass);backdrop-filter:blur(20px);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden}
 .world-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,176,0.05),transparent);opacity:0;transition:opacity 0.3s}
 .world-card:hover{border-color:rgba(0,229,176,0.35);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
@@ -224,7 +224,7 @@ footer a:hover{color:var(--text)}
 .reveal-left.visible{opacity:1;transform:translateX(0)}
 .reveal-right{opacity:0;transform:translateX(-20px);transition:opacity 0.4s ease,transform 0.4s ease}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
-@media(max-width:768px){nav{padding:14px 20px}.nav-link{display:none}.worlds-grid,.ad-grid,.comp-row{grid-template-columns:1fr}.pricing-grid,.proof-grid,.how-steps,.roi-result-grid{grid-template-columns:1fr}.sp-div{display:none}.float-widget{display:none}}
+@media(max-width:768px){nav{padding:12px 16px}.nav-link{display:none}.logo{font-size:1.1rem}.worlds-grid,.ad-grid,.comp-row{grid-template-columns:1fr!important}.pricing-grid,.proof-grid,.how-steps,.roi-result-grid{grid-template-columns:1fr!important}.sp-div{display:none}.float-widget{display:none}.hero{padding:100px 16px 60px}.container{padding:0 16px}.ticker-label{font-size:0.55rem!important;padding:0 8px!important}.ticker-item{font-size:0.72rem;padding:0 16px}.section-title{font-size:clamp(1.6rem,7vw,2.5rem)}.how{padding:60px 0}.worlds{padding:60px 0}.antes-depois{padding:60px 0}.comparativo{padding:60px 0}.proof{padding:60px 0}.roi-calc{padding:60px 0}.pricing{padding:60px 0}.faq{padding:60px 0}.final-cta{padding:80px 16px}.ad-card{padding:24px}.price-card{padding:28px 24px}.roi-inner{padding:28px 20px}.comp-table{font-size:0.78rem}.proof-card{padding:24px 20px}.hero-actions{flex-direction:column;align-items:center;width:100%}.btn-primary,.btn-ghost{width:100%;text-align:center;box-sizing:border-box}}
 </style>
 </head>
 <body>
@@ -304,7 +304,7 @@ footer a:hover{color:var(--text)}
 </section>
 <section class="worlds">
   <div class="container">
-    <div class="section-tag reveal">Os 4 mundos</div>
+    <div class="section-tag reveal">Os 5 mundos</div>
     <h2 class="section-title reveal">Conteúdo infinito.<br>Sempre atualizado.</h2>
     <p class="section-sub reveal">Cada mundo tem sua lógica, tom e fontes. Você nunca vai repetir pauta.</p>
     <div class="worlds-grid">
@@ -314,10 +314,16 @@ footer a:hover{color:var(--text)}
       <div class="world-card reveal"><span class="world-icon">🎯</span><h3>Nicho</h3><p>Conteúdo especializado para finanças, saúde, tech, comportamento e mais.</p></div>
     </div>
   </div>
+      <div class="world-card reveal">
+        <span style="display:inline-block;font-size:0.62rem;font-weight:700;letter-spacing:0.08em;padding:3px 10px;border-radius:100px;margin-bottom:14px;background:rgba(244,63,94,0.12);color:#f43f5e;text-transform:uppercase">✨ Novo</span>
+        <span class="world-icon">🎬</span>
+        <h3>Novelinha Viral</h3>
+        <p>Roteiros completos em pixel art animado para o Veo 3. Personagens, cenas e falas prontos para viralizar.</p>
+      </div>
 </section>
 <div class="ticker-section">
   <div class="ticker-inner">
-    <div class="ticker-label">💸 CREATORS GANHAM</div>
+    <div class="ticker-label">💸 GANHOS</div>
     <div class="ticker-track">
       <div class="ticker-content">
         <span class="ticker-item"><span class="dot"></span>TikTok paga até <strong>R$0,05 por view</strong> no Creator Fund</span>
@@ -456,6 +462,7 @@ footer a:hover{color:var(--text)}
     <p class="disclaimer">* Depoimentos reais de usuários. Resultados individuais podem variar.</p>
   </div>
 </section>
+<div style="text-align:center;padding:32px 24px;position:relative;z-index:1"><a href="#planos" class="btn-primary" style="display:inline-block">Ver planos e preços →</a></div>
 <section class="comparativo">
   <div class="container">
     <div class="section-tag reveal">Comparativo</div>
@@ -500,6 +507,7 @@ footer a:hover{color:var(--text)}
     </div>
   </div>
 </section>
+<div style="text-align:center;padding:32px 24px;position:relative;z-index:1"><a href="#planos" class="btn-primary" style="display:inline-block">Ver planos e preços →</a></div>
 <section class="roi-calc">
   <div class="container">
     <div class="section-tag reveal" style="justify-content:center">Calculadora de ROI</div>
