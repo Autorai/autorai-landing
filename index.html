@@ -417,11 +417,23 @@ html,body{overflow-x:hidden}</style>
           if(p<1) requestAnimationFrame(step);
         })(performance.now());
       }
-      count(document.getElementById('cnt1'),3847,2000,'','');
-      count(document.getElementById('cnt2'),73,2000,'','');
-      document.getElementById('cnt3').textContent = '8s';
-      count(document.getElementById('cnt4'),1570,2000,'R$','');
-      count(document.getElementById('cnt5'),87,2000,'','%');
+      var _countersDone = false;
+      function runCounters(){
+        if(_countersDone) return;
+        _countersDone = true;
+        count(document.getElementById('cnt1'),3847,2000,'','');
+        count(document.getElementById('cnt2'),73,2000,'','');
+        document.getElementById('cnt3').textContent = '8s';
+        count(document.getElementById('cnt4'),1570,2000,'R$','');
+        count(document.getElementById('cnt5'),87,2000,'','%');
+      }
+      var _cntEl = document.getElementById('cnt1');
+      if(_cntEl){
+        var _cntObs = new IntersectionObserver(function(entries){
+          if(entries[0].isIntersecting){ runCounters(); _cntObs.disconnect(); }
+        },{threshold:0.3});
+        _cntObs.observe(_cntEl.closest('div[style]') || _cntEl);
+      }
       setTimeout(function(){
         document.getElementById('bar1').style.width='78%';
         document.getElementById('bar2').style.width='62%';
