@@ -252,12 +252,16 @@ html,body{overflow-x:hidden}@media(max-width:768px){.comparativo{display:none}}
 .final-cta .container{position:relative;z-index:2}
 
 @media(max-width:768px){
-  .hero{background-image:url(hero-mobile.png)!important;background-size:cover;background-position:center center}
-  .how{background-image:url(img-how-mobile.png)!important;background-size:cover;background-position:center center}
-  .worlds{background-image:url(img-worlds-mobile.png)!important;background-size:cover;background-position:center center}
-  .proof{background-image:url(img-proof-mobile.png)!important;background-size:cover;background-position:center center}
-  .final-cta{background-image:url(img-cta-mobile.png)!important;background-size:cover;background-position:center center}
+  .hero{background-image:url(hero-mobile.png)!important;background-size:cover;background-position:center center}.hero::before{background:rgba(6,8,16,0.60)!important}
+  .how{background-image:url(img-how-mobile.png)!important;background-size:contain;background-repeat:no-repeat;background-position:center center}
+  .worlds{background-image:url(img-worlds-mobile.png)!important;background-size:contain;background-repeat:no-repeat;background-position:center center}
+  .proof{background-image:url(img-proof-mobile.png)!important;background-size:contain;background-repeat:no-repeat;background-position:center center}
+  .final-cta{background-image:url(img-cta-mobile.png)!important;background-size:contain;background-repeat:no-repeat;background-position:center bottom}
   .antes-depois{background-image:none!important}
+}
+
+@media(max-width:768px){
+  .hero::after{top:0;bottom:auto;height:30%;background:linear-gradient(to bottom,#060810,transparent)!important}
 }
 </style>
 </head>
