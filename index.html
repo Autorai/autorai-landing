@@ -118,7 +118,7 @@ section{position:relative;z-index:1}
 .ad-item p{color:var(--muted);line-height:1.5}
 .ad-item p strong{display:block;color:var(--text);margin-bottom:2px}
 .comparativo{padding:120px 0;background:var(--surface)}
-.comp-table{margin-top:72px;border:1px solid var(--glass-border);border-radius:24px;overflow:hidden}
+.comp-table{margin-top:72px;border:1px solid var(--glass-border);border-radius:24px;overflow:hidden}.comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--glass-border);border-radius:24px}.comp-table-wrap .comp-table{margin-top:0;border:none;border-radius:0;min-width:480px}
 .comp-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-bottom:1px solid var(--border)}
 .comp-row:last-child{border-bottom:none}
 .comp-row.header{background:rgba(0,229,176,0.05)}
@@ -474,7 +474,7 @@ html,body{overflow-x:hidden}</style>
   <div class="container">
     <div class="section-tag reveal">Comparativo</div>
     <h2 class="section-title reveal">Por que Autor.ai?</h2>
-    <div class="comp-table reveal">
+    <div class="comp-table-wrap reveal"><div class="comp-table">
       <div class="comp-row header">
         <div class="comp-header-cell" style="justify-content:flex-start;padding-left:24px">Critério</div>
         <div class="comp-header-cell main">Autor.ai</div>
