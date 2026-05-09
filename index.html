@@ -429,15 +429,18 @@ html,body{overflow-x:hidden}@media(max-width:768px){.comparativo{display:none}}<
       }
       var _cntEl = document.getElementById('cnt1');
       if(_cntEl){
+        var _cntTarget = _cntEl.closest('section') || _cntEl;
         var _cntObs = new IntersectionObserver(function(entries){
           if(entries[0].isIntersecting){ runCounters(); _cntObs.disconnect(); }
-        },{threshold:0});
-        _cntObs.observe(_cntEl.closest('div[style]') || _cntEl);
-        // Se já visível no load (ex: refresh com scroll no topo)
-        setTimeout(function(){
-          var r = _cntEl.getBoundingClientRect();
-          if(r.top < window.innerHeight) { runCounters(); _cntObs.disconnect(); }
-        }, 300);
+        },{threshold:0,rootMargin:'0px 0px -10px 0px'});
+        _cntObs.observe(_cntTarget);
+        // Fallback pra refresh com scroll já na seção
+        window.addEventListener('load', function(){
+          setTimeout(function(){
+            var r = _cntTarget.getBoundingClientRect();
+            if(r.top < window.innerHeight && r.bottom > 0){ runCounters(); _cntObs.disconnect(); }
+          }, 100);
+        });
       }
       setTimeout(function(){
         document.getElementById('bar1').style.width='78%';
