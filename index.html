@@ -433,6 +433,11 @@ html,body{overflow-x:hidden}@media(max-width:768px){.comparativo{display:none}}<
           if(entries[0].isIntersecting){ runCounters(); _cntObs.disconnect(); }
         },{threshold:0});
         _cntObs.observe(_cntEl.closest('div[style]') || _cntEl);
+        // Se já visível no load (ex: refresh com scroll no topo)
+        setTimeout(function(){
+          var r = _cntEl.getBoundingClientRect();
+          if(r.top < window.innerHeight) { runCounters(); _cntObs.disconnect(); }
+        }, 300);
       }
       setTimeout(function(){
         document.getElementById('bar1').style.width='78%';
