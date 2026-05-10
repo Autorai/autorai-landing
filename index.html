@@ -895,5 +895,18 @@ document.querySelectorAll('.demo-chip').forEach((chip, idx) => {
     <button onclick="closeModal()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:13px;cursor:pointer">Cancelar</button>
   </div>
 </div>
+
+<script>
+if(window.innerWidth <= 768){
+  var parallaxSections = document.querySelectorAll('.how,.worlds,.antes-depois,.proof,.final-cta');
+  window.addEventListener('scroll', function(){
+    parallaxSections.forEach(function(el){
+      var rect = el.getBoundingClientRect();
+      var offset = (rect.top * 0.4).toFixed(2);
+      el.style.backgroundPosition = 'center ' + offset + 'px';
+    });
+  }, {passive:true});
+}
+</script>
 </body>
 </html>
