@@ -98,7 +98,7 @@ section{position:relative;z-index:1}
 .how-step p{color:var(--muted);font-size:0.9rem;line-height:1.7}
 .worlds{padding:120px 0;background:var(--surface)}
 .worlds-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:72px}
-.world-card{border:1px solid var(--glass-border);border-radius:24px;padding:36px 28px;background:var(--glass);backdrop-filter:blur(20px);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;min-width:0;overflow:hidden;word-break:break-word}
+.world-card{border:1px solid var(--glass-border);border-radius:24px;padding:36px 28px;background:var(--glass);backdrop-filter:blur(20px);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;min-width:0;overflow:visible;word-break:normal}
 .world-card::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,176,0.05),transparent);opacity:0;transition:opacity 0.3s}
 .world-card:hover{border-color:rgba(0,229,176,0.35);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
 .world-card:hover::before{opacity:1}
