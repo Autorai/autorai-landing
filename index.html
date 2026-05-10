@@ -226,22 +226,22 @@ footer a:hover{color:var(--text)}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
 @media(max-width:768px){nav{padding:12px 16px}.nav-link{display:none}.logo{font-size:1.1rem}.worlds-grid,.ad-grid,.comp-row{grid-template-columns:1fr!important}.pricing-grid,.proof-grid,.how-steps,.roi-result-grid{grid-template-columns:1fr!important}.sp-div{display:none}.float-widget{display:none}.hero{padding:100px 16px 60px}.container{padding:0 16px}.ticker-label{font-size:0.55rem!important;padding:0 8px!important}.ticker-item{font-size:0.72rem;padding:0 16px}.section-title{font-size:clamp(1.6rem,7vw,2.5rem)}.how{padding:60px 0}.worlds{padding:60px 0}.antes-depois{padding:60px 0}.comparativo{padding:60px 0}.proof{padding:60px 0}.roi-calc{padding:60px 0}.pricing{padding:60px 0}.faq{padding:60px 0}.final-cta{padding:80px 16px}.ad-card{padding:24px}.price-card{padding:28px 24px}.roi-inner{padding:28px 20px}.comp-table{font-size:0.78rem}.proof-card{padding:24px 20px}.hero-actions{flex-direction:column;align-items:center;width:100%}.btn-primary,.btn-ghost{width:100%;text-align:center;box-sizing:border-box}}
 html,body{overflow-x:hidden}@media(max-width:768px){.comparativo{display:none}}
-.how{background-image:url(img-how.png);background-size:cover;background-position:center center;position:relative}
+.how{background-image:url(img-how.png);background-size:cover;background-position:center center;background-attachment:fixed;position:relative}
 .how::before{content:"";position:absolute;inset:0;background:rgba(6,8,16,0.75);z-index:0}
 .how::after{content:"";position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to bottom,transparent,#060810);z-index:1;pointer-events:none}
 .how .container{position:relative;z-index:2}
 
-.worlds{background-image:url(img-worlds.png);background-size:cover;background-position:center center;position:relative}
+.worlds{background-image:url(img-worlds.png);background-size:cover;background-position:center center;background-attachment:fixed;position:relative}
 .worlds::before{content:"";position:absolute;inset:0;background:rgba(6,8,16,0.78);z-index:0}
 .worlds::after{content:"";position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to bottom,transparent,#060810);z-index:1;pointer-events:none}
 .worlds .container{position:relative;z-index:2}
 
-.antes-depois{background-image:url(img-antes-depois.png);background-size:cover;background-position:center center;position:relative}
+.antes-depois{background-image:url(img-antes-depois.png);background-size:cover;background-position:center center;background-attachment:fixed;position:relative}
 .antes-depois::before{content:"";position:absolute;inset:0;background:rgba(6,8,16,0.72);z-index:0}
 .antes-depois::after{content:"";position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to bottom,transparent,#060810);z-index:1;pointer-events:none}
 .antes-depois .container{position:relative;z-index:2}
 
-.proof{background-image:url(img-proof.png);background-size:cover;background-position:center center;position:relative}
+.proof{background-image:url(img-proof.png);background-size:cover;background-position:center center;background-attachment:fixed;position:relative}
 .proof::before{content:"";position:absolute;inset:0;background:rgba(6,8,16,0.78);z-index:0}
 .proof::after{content:"";position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to bottom,transparent,#060810);z-index:1;pointer-events:none}
 .proof .container{position:relative;z-index:2}
@@ -270,6 +270,13 @@ html,body{overflow-x:hidden}@media(max-width:768px){.comparativo{display:none}}
   .antes-depois{min-height:400px}
   .proof{min-height:500px}
   .final-cta{min-height:600px}
+}
+
+@media(max-width:768px){
+  .how,.worlds,.antes-depois,.proof,.final-cta{
+    background-attachment:scroll!important;
+    background-image:none!important;
+  }
 }
 </style>
 </head>
